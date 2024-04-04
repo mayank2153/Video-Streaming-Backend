@@ -1,0 +1,1 @@
+we create the .gitkeep(public/temp) file to get the files tracked by git
