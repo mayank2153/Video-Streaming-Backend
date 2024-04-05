@@ -1,1 +1,8 @@
 we create the .gitkeep(public/temp) file to get the files tracked by git
+
+to connect the db, we had first created a cluster on mongodb and installed express mongoose and dotenv in our project.
+we have made a mongodb connection function inside index.js in db folder which will be used to connect to the database.
+we will call this function in the entry point of our app i.e. index.js in src folder
+
+the connection function of the mongodb is an async function.
+to have dotenv in our project , we need to call it by using require but we have used import to call it, thats why we have added -r flag in our dev script to make our app know that it should have to call dotenv/config in starting and we have also added --experimental-json-modules in our dev script to call dotenv/ by import 
