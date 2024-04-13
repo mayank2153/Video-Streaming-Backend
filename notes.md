@@ -1,14 +1,19 @@
-we create the .gitkeep(public/temp) file to get the files tracked by git
+## gitkeep
+  we create the .gitkeep(public/temp) file to get the files tracked by git
 
-to connect the db, we had first created a cluster on mongodb and installed express, mongoose and dotenv in our project.
-we have made a mongodb connection function inside index.js in db folder which will be used to connect to the database.
-we will call this function in the entry point of our app i.e. index.js in src folder
+## Connecting DB
+  - To connect the db, we had first created a cluster on mongodb and installed express, mongoose and dotenv in our project.
+  - we have made a mongodb connection function inside index.js in db folder which will be used to connect to the database.
+  - we will call this function in the entry point of our app i.e. index.js in src folder
+  - the connection function of the mongodb is an async function.
 
-the connection function of the mongodb is an async function.
-to have dotenv in our project , we need to call it by using require but we have used import to call it, thats why we have added -r flag in our dev script to make our app know that it should have to call dotenv/config in starting and we have also added --experimental-json-modules in our dev script to call dotenv/ by import 
+## Using Dotenv
+  - To have dotenv in our project , we need to call it by using require but we have used import to call it, thats why we have added -r flag in our dev script to make our app know that it should have to call dotenv/config in starting and we have also added --experimental-json-modules in our dev script to call dotenv/ by import 
 
-
-Middleware: middlewares are the checks performed by the app in the middle of a request, suppose that the user want to go to /twitter and we have app.get('/twitter,(req,res)=>{res.send("hello")}).  if a middleware is available then the app dont show show "Hello" on the screen but it will check that the middleware is passed or not. fo example we can add a middleware to check that user is logged in or not before going to /twitter
+## Middleware
+ - Middlewares are the checks performed by the app in the middle of a request, suppose that the user want to go to ``` /twitter and we have app.get('/twitter,(req,res)=>{res.send("hello")}).```  
+ - If a middleware is available then the app dont show show "Hello" on the screen but it will check that the middleware is passed or not.
+ - For example we can add a middleware to check that user is logged in or not before going to `/twitter`
 
 
 To load the middleware function, call app.use(), specifying the middleware function. For example, the following code loads the myLogger middleware function before the route to the root path (/).
@@ -62,8 +67,11 @@ and we have also made a function to check that if a password is correct or not.
 
 what are access and referesh tokens?
     Access tokens are temporary credentials that grant access to a protected resource, while refresh tokens are used to obtain new access tokens once the current ones expire.
-
     we have made our access token and refresh token in .env file.
 
+## Multer
+  - Multer stores uploaded files on the local server's disk or in memory.
 
+## Cloudinary
+ - Cloudinary stores uploaded files on their servers
 
