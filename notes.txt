@@ -1,6 +1,6 @@
 we create the .gitkeep(public/temp) file to get the files tracked by git
 
-to connect the db, we had first created a cluster on mongodb and installed express mongoose and dotenv in our project.
+to connect the db, we had first created a cluster on mongodb and installed express, mongoose and dotenv in our project.
 we have made a mongodb connection function inside index.js in db folder which will be used to connect to the database.
 we will call this function in the entry point of our app i.e. index.js in src folder
 
@@ -9,3 +9,43 @@ to have dotenv in our project , we need to call it by using require but we have 
 
 
 Middleware: middlewares are the checks performed by the app in the middle of a request, suppose that the user want to go to /twitter and we have app.get('/twitter,(req,res)=>{res.send("hello")}).  if a middleware is available then the app dont show show "Hello" on the screen but it will check that the middleware is passed or not. fo example we can add a middleware to check that user is logged in or not before going to /twitter
+
+
+To load the middleware function, call app.use(), specifying the middleware function. For example, the following code loads the myLogger middleware function before the route to the root path (/).
+
+const express = require('express')
+const app = express()
+
+const myLogger = function (req, res, next) {
+  console.log('LOGGED')
+  next()
+}
+
+app.use(myLogger)
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(3000)
+Every time the app receives a request, it prints the message “LOGGED” to the terminal.
+
+
+we have created our own ApiError class by inheriting the properties of  the OG error class.
+we can create our own error class for errors of different kinds like here we have created ApiError. the generall convention of writing class is like this
+
+
+class <Name> extends Error{
+    constructor(){
+        super(message);
+    }
+}
+
+by using super, we are inheriritng properties of  the error class we have initialized some properties of our own, and if the stack trace of the error is not provided on our constructor then we are creating our stackTace using Errror.captureStackTrace.
+Stack trace is the The functions or methods that were called leading up to the error.
+and File names and line numbers where each function or method is defined.
+
+13/04/24
+today we will create data models for our app, by refering to thid : https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj
+
+firstly we are creating user and video models for our app in models folder.
