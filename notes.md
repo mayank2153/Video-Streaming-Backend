@@ -75,3 +75,80 @@ After creating the basic fields. we have installed some libraries:
 ## Cloudinary
  - Cloudinary stores uploaded files on their servers
 
+## HTTP
+  HTTP or Hyper Text Transfer Protocols a protocol that allows users to exchange information over the internet. It works in application layer. HTTP follows a classical client-server model, with a client opening a connection to make a request, then waiting until it receives a response.
+  ### What  are `HTTP Headers`?
+    1.  Http Headers contains the extra information given by client or server(Metadata) in the form of key value pairs.
+    2.  The work of http header includes caching, authentication and state management 
+  ### Type of Headers
+
+  #### - Request Headers(From Client)
+  #### - Response Headers(From Server)
+  #### - Representation Headers(Encoding/Compression)
+  #### - Payload Headers(Data)
+
+  #### Most Common Headers
+  ```
+  1. Accept
+  2. User-Agent
+  3. Authorization
+  4. Content-Type
+  5. Cookie
+  6. Cache Control
+```
+#### CORS Headers
+```
+  1. Access-Control-Allow-Origin
+  2. Access-Control-Allow-Credentials
+  3. Access-Control-Allow-Method
+```
+
+#### Security Headers
+```
+  1. Cross-Origin-Embeders-Policy
+  2. Cross-Origin-Opener-Policy
+  3. Content-Security-Policy
+  4. X-XSS-Protection
+```
+### HTTP Methods
+  
+  HTTP defines a set of request methods to indicate the desired action to be performed for a given resource.
+
+  #### GET
+The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
+
+#### HEAD
+The HEAD method asks for a response identical to a GET request, but without the response body.
+
+#### POST
+The POST method submits an entity to the specified resource, often causing a change in state or side effects on the server.
+
+#### PUT
+The PUT method replaces all current representations of the target resource with the request payload.
+
+#### DELETE
+The DELETE method deletes the specified resource.
+
+#### CONNECT
+The CONNECT method establishes a tunnel to the server identified by the target resource.
+
+#### OPTIONS
+The OPTIONS method describes the communication options for the target resource.
+
+#### TRACE
+The TRACE method performs a message loop-back test along the path to the target resource.
+
+#### PATCH
+The PATCH method applies partial modifications to a resource.
+  
+### HTTP Status Codes
+```
+- 1XX: Informational
+- 2XX: Success
+- 3XX: Redirectional
+- 4XX: Client Error
+- 5XX: Server Error
+```
+
+  
+
