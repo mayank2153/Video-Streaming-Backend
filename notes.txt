@@ -49,3 +49,21 @@ and File names and line numbers where each function or method is defined.
 today we will create data models for our app, by refering to thid : https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj
 
 firstly we are creating user and video models for our app in models folder.
+after creating the basic fields. we have installed some libraries:
+    1. mongoose aggregate paginate v2: the work of this library is that it use to retrieve selected data from the database in a paginated manner(we will learn about it later on)
+
+    2. bcrypt: this library is used to securely hash passwords and make them encrypted
+
+    3. json web token: JWTs provide a flexible and efficient way to securely transmit information between parties, making them a popular choice for authentication and authorization in web development.
+
+we have installed mongoose aggregate paginate in video model through a plugin.
+we have made a function in user model that beforer saving the data the function will always hash the password if it is modified.
+and we have also made a function to check that if a password is correct or not.
+
+what are access and referesh tokens?
+    Access tokens are temporary credentials that grant access to a protected resource, while refresh tokens are used to obtain new access tokens once the current ones expire.
+
+    we have made our access token and refresh token in .env file.
+
+
+
