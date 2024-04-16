@@ -5,11 +5,11 @@ import ConnectDB from './db/index.js';
 import { app } from './app.js';
 dotenv.config(
     {
-        path: './env'
+        path: './.env'
     }
 )
 app.get('/',(req,res)=>{
-    res.send("hey");
+    res.send("Backend Project");
 })
 ConnectDB()
 .then(()=>{
