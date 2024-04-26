@@ -212,7 +212,25 @@ const refreshAccessToken = asyncHandler(async(req,res)=>{
         throw new ApiError(401, error?.message || "Invalid refresh token")
     }
 })
-export {registerUser,loginUser,logOutUser,refreshAccessToken}
+
+const changeCurrentPassword= asyncHandler(async(req,res)=>{
+    const {oldPassword,newPassword} = req.body;
+    const user= await User.findById(req.user.id);
+    const isPasswordCorrect=await user.isPasswordCorrect(oldPassword);
+    if(!isPasswordCorrect){
+        throw new ApiError("400","Invalid Old Password");
+    }
+    user.password=newPassword;
+    // we have made a presave function in model to hash the password if it is modified, so we dont need to do it here
+    await user.save({
+        validateBeforeSave:false,
+    })
+
+    return res.status(200)
+    .json( new ApiResponse(200,{},"Password Changed Successfully"));
+})
+
+export {registerUser,loginUser,logOutUser,refreshAccessToken, changeCurrentPassword}
     // get user details from frontend
     // validation - not empty
     // check if user already exists: username, email
