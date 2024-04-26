@@ -235,6 +235,29 @@ const getCurrentUser=asyncHandler(async(req,res)=>{
     .json(new ApiResponse(200,req.user,"User fetched Successfully"));
 })
 
+const updateAccountDetails=asyncHandler(async(req,res)=>{
+    const {fullname,email}=req.body;
+    if(!fullname || !email){
+        throw new ApiError(400,"All fields are required")
+    }
+    const user = await User.findByIdAndUpdate(
+        req.user?._id,
+        {
+            $set: {
+                fullname:fullname,
+                email:email
+            }
+        },
+        {
+            new:true,
+        }
+    ).select("-password")
+
+    return res.status(200)
+    .json(
+        new ApiResponse(200,user,"Account details updated successfully")
+    )
+})
 export {registerUser,loginUser,logOutUser,refreshAccessToken, changeCurrentPassword}
     // get user details from frontend
     // validation - not empty
