@@ -374,7 +374,7 @@ const getUserChannelProfile=asyncHandler(async(req,res)=>{
         new ApiResponse(200,channel[0], "User Channel fetched Successfully")
     )
 })
-export {registerUser,loginUser,logOutUser,refreshAccessToken, changeCurrentPassword, updateAccountDetails, updateUserAvatar, updateUserCoverImage,getCurrentUser}
+export {registerUser,loginUser,logOutUser,refreshAccessToken, changeCurrentPassword, updateAccountDetails, updateUserAvatar, updateUserCoverImage,getCurrentUser,getUserChannelProfile}
     // get user details from frontend
     // validation - not empty
     // check if user already exists: username, email
