@@ -315,6 +315,65 @@ const updateUserCoverImage=asyncHandler(async(req,res)=>{
     )
 
 })
+const getUserChannelProfile=asyncHandler(async(req,res)=>{
+    const {userName}=req.params
+    if(!userName){
+        throw new ApiError(400," Username is missing")
+    }
+
+    const channel = await User.aggregate([
+        {
+            $match:{
+                userName: userName?.toLowerCase()
+            },
+            // lookup- Performs a left outer join to a collection in the same database to filter in documents from the "joined" collection for processing. The $lookup stage adds a new array field to each input document. The new array field contains the matching documents from the "joined" collection. The $lookup stage passes these reshaped documents to the next stage.
+            $lookup : {
+                from:"Subscription",
+                localField: "_id",//source-user,destination-subscription
+                foreignField: "Channel",
+                as: "subscribers"
+            },
+            $lookup:{
+                from:"Subscription",
+                localField: "_id",
+                foreignField: "Subscriber",
+                as: "subscribedTo"
+            },
+            $addFields: {
+                subscribersCount:{
+                    $size: "$subscribers"
+                },
+                channelsSubscribedToCount : {
+                    $size: "$subscribedTo"
+                },
+                isSubscribed:{
+                    $cond: {
+                        $if: { $in: [req?.user?._id,"$subscribers.Subscriber"] },
+                        then:true,
+                        else:false
+                    }
+                }
+            },
+            $project:{
+                userName: 1,
+                email: 1,
+                fullname  : 1,
+                avatar: 1,
+                coverImage: 1,
+                subscribersCount: 1,
+                channelsSubscribedToCount: 1,
+                isSubscribed: 1
+            }
+        }
+    ])
+    if(!channel?.length){
+        throw new ApiError(404,"Channel not found")
+    }
+    return res.status(200)
+    .json(
+        new ApiResponse(200,channel[0], "User Channel fetched Successfully")
+    )
+})
 export {registerUser,loginUser,logOutUser,refreshAccessToken, changeCurrentPassword, updateAccountDetails, updateUserAvatar, updateUserCoverImage,getCurrentUser}
     // get user details from frontend
     // validation - not empty

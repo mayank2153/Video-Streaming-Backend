@@ -150,5 +150,9 @@ The PATCH method applies partial modifications to a resource.
 - 5XX: Server Error
 ```
 
-  
+## Aggregation
+- it is the method for processing large number of documents.
+- it is better than find() command because in this we can process the data in different stages, while finding the data and can return only the required data.
+- here we connect the data models using pipeline
+- generally it returns data in an array.
 
